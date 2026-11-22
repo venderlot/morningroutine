@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#f6f2ec" />
+<title>早晨到出门 · Утренний распорядок</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@400;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#f6f2ec;
+    --paper:#fffdf9;
+    --paper-2:#fbf8f3;
+    --ink:#1f3446;
+    --ink-2:#4b6173;
+    --muted:#8b97a0;
+    --faint:#b3bcc2;
+    --line:#ebe5dc;
+    --line-2:#f1ece5;
+
+    --blue:#5a8eaf;  --blue-soft:#e7f0f6;
+    --rose:#c97f92;  --rose-soft:#f8e9ed;
+    --amber:#cf9458; --amber-soft:#f8eddf;
+    --sage:#6e9a82;  --sage-soft:#e6f1ea;
+    --seal:#c2523e;
+
+    --ok:#5e8f74;  --ok-soft:#e8f3ec;
+    --bad:#b8667a; --bad-soft:#f9ecef;
+
+    --serif:"Playfair Display", Georgia, "Times New Roman", serif;
+    --sans:"Manrope", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --han:"Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+
+    --r-sm:12px; --r-md:18px; --r-lg:26px; --r-xl:34px;
+    --shadow-sm:0 1px 2px rgba(31,52,70,.04), 0 4px 14px rgba(31,52,70,.04);
+    --shadow-md:0 2px 6px rgba(31,52,70,.04), 0 18px 40px -12px rgba(31,52,70,.12);
+    --shadow-lg:0 30px 70px -30px rgba(31,52,70,.28);
+    --ease:cubic-bezier(.2,.7,.2,1);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0;color:var(--ink);font-family:var(--sans);line-height:1.55;font-size:15px;
+    background:
+      radial-gradient(60rem 30rem at 100% -10%, rgba(201,127,146,.13), transparent 60%),
+      radial-gradient(50rem 30rem at -10% 30%, rgba(90,142,175,.10), transparent 60%),
+      radial-gradient(40rem 30rem at 60% 110%, rgba(207,148,88,.08), transparent 60%),
+      var(--bg);
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.2 0 0 0 0 0.2 0 0 0 0 0.25 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  button,input,select{font:inherit;color:inherit}
+  button{cursor:pointer;background:none;border:0;padding:0}
+  :focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:10px}
+  h1,h2,h3,p{margin:0}
+  [lang="zh"]{font-family:var(--han)}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+  /* ---------- Header ---------- */
+  .app-header{
+    position:sticky;top:0;z-index:40;
+    background:rgba(246,242,236,.78);backdrop-filter:saturate(1.4) blur(18px);-webkit-backdrop-filter:saturate(1.4) blur(18px);
+    border-bottom:1px solid rgba(235,229,220,.9);
+  }
+  .header-inner{max-width:1200px;margin:0 auto;height:74px;padding:0 28px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px}
+  .brand{display:flex;align-items:center;gap:13px;min-width:0}
+  .seal{
+    width:40px;height:40px;flex:none;border-radius:9px;display:grid;place-items:center;
+    background:var(--seal);color:#fff8f2;font-family:var(--han);font-weight:700;font-size:22px;
+    transform:rotate(-4deg);box-shadow:inset 0 0 0 2px rgba(255,255,255,.18), 0 6px 14px -4px rgba(194,82,62,.45);
+  }
+  .brand-title{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.1}
+  .brand-title em{font-style:italic;font-weight:400;color:var(--rose)}
+  .brand-sub{font-size:11px;color:var(--muted);letter-spacing:.04em;margin-top:2px}
+
+  .top-nav{display:flex;gap:2px;padding:4px;border-radius:999px;background:rgba(255,253,249,.75);border:1px solid var(--line);box-shadow:var(--shadow-sm)}
+  .nav-btn{display:flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;font-size:13px;font-weight:600;color:var(--ink-2);transition:background .2s,color .2s}
+  .nav-btn .nav-icon{font-family:var(--han);font-size:14px;opacity:.7}
+  .nav-btn:hover{color:var(--ink);background:rgba(31,52,70,.04)}
+  .nav-btn.active{background:var(--ink);color:#fff;box-shadow:0 6px 16px -6px rgba(31,52,70,.5)}
+  .nav-btn.active .nav-icon{opacity:1}
+
+  .header-right{display:flex;justify-content:flex-end;align-items:center;gap:14px}
+  .progress-ring{display:flex;align-items:center;gap:11px}
+  .ring{position:relative;width:44px;height:44px}
+  .ring svg{transform:rotate(-90deg)}
+  .ring-bg{stroke:var(--line)}
+  .ring-fill{stroke:url(#ringGrad);stroke-linecap:round;transition:stroke-dashoffset .6s var(--ease)}
+  .ring-pct{position:absolute;inset:0;display:grid;place-items:center;font-size:10px;font-weight:800;color:var(--ink-2)}
+  .progress-text{font-size:11px;color:var(--muted);line-height:1.3}
+  .progress-text strong{display:block;font-size:13px;color:var(--ink)}
+  .reset-btn{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;color:var(--muted);border:1px solid var(--line);background:var(--paper);transition:.2s}
+  .reset-btn:hover{color:var(--seal);border-color:#e9cfc8;transform:rotate(-90deg)}
+
+  /* ---------- Layout ---------- */
+  .container{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:36px 28px 90px}
+  .panel{display:none}
+  .panel.active{display:block;animation:rise .45s var(--ease)}
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  .eyebrow{font-size:10.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px}
+  .eyebrow::before{content:"";width:18px;height:1px;background:currentColor;opacity:.6}
+  .eyebrow.plain::before{display:none}
+  h2{font-family:var(--serif);font-weight:500;font-size:clamp(26px,3vw,34px);letter-spacing:-.02em;line-height:1.15;margin-top:8px}
+  h2 em{font-style:italic;color:var(--rose)}
+  h3{font-family:var(--serif);font-weight:500;font-size:22px;letter-spacing:-.01em;line-height:1.25;margin-top:6px}
+  .lead{color:var(--ink-2);font-size:15px;line-height:1.75;max-width:60ch}
+
+  .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin:56px 0 22px}
+  .section-head .meta{font-size:12px;color:var(--muted);white-space:nowrap}
+  .page-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin:4px 0 28px}
+  .page-head .lead{margin-top:10px}
+
+  /* ---------- Buttons ---------- */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:12px 20px;font-size:13px;font-weight:700;transition:transform .2s var(--ease),box-shadow .2s,background .2s,color .2s,opacity .2s;white-space:nowrap}
+  .btn-primary{background:var(--ink);color:#fff;box-shadow:0 10px 22px -10px rgba(31,52,70,.6)}
+  .btn-primary:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 14px 26px -10px rgba(31,52,70,.65)}
+  .btn-ghost{background:var(--paper);color:var(--ink);border:1px solid var(--line)}
+  .btn-ghost:hover:not(:disabled){border-color:#d9d1c5;background:#fff}
+  .btn-soft{background:rgba(31,52,70,.05);color:var(--ink-2);padding:10px 16px}
+  .btn-soft:hover:not(:disabled){background:rgba(31,52,70,.09);color:var(--ink)}
+  .btn:disabled{opacity:.38;cursor:not-allowed;box-shadow:none}
+  .icon-btn{width:32px;height:32px;border-radius:50%;display:inline-grid;place-items:center;color:var(--ink-2);background:rgba(31,52,70,.05);transition:.2s;flex:none}
+  .icon-btn:hover{background:var(--ink);color:#fff}
+  .icon-btn.playing{background:var(--rose);color:#fff}
+  .no-speech [data-speak]{display:none!important}
+  .link-btn{font-size:11.5px;font-weight:700;color:var(--blue);padding:6px 2px;border-bottom:1px dashed rgba(90,142,175,.4)}
+  .link-btn:hover{color:var(--ink);border-color:var(--ink)}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;overflow:hidden;border-radius:var(--r-xl);padding:56px 56px 52px;
+    background:
+      radial-gradient(30rem 20rem at 85% 30%, rgba(246,214,196,.55), transparent 70%),
+      linear-gradient(120deg,var(--paper) 0%,#fbf7f1 55%,#f7eee9 100%);
+    border:1px solid var(--line);box-shadow:var(--shadow-lg);
+    display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;
+  }
+  .hero-copy{position:relative;z-index:2}
+  .hero-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+  .chip{display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:999px;font-size:11.5px;font-weight:600;background:rgba(255,255,255,.8);border:1px solid var(--line);color:var(--ink-2)}
+  .chip .dot{width:6px;height:6px;border-radius:50%;background:var(--rose)}
+  .chip [lang="zh"]{font-size:13px;color:var(--ink)}
+  .hero h1{font-family:var(--han);font-weight:700;font-size:clamp(52px,7.2vw,92px);line-height:1;letter-spacing:.04em;color:var(--ink)}
+  .hero-py{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--rose);margin:14px 0 18px}
+  .hero .lead{margin-bottom:30px}
+  .hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+  .hero-art{position:relative;height:340px;display:grid;place-items:center}
+  .hero-art svg{width:100%;max-width:340px;height:auto;filter:drop-shadow(0 30px 40px rgba(90,110,130,.18))}
+  .hero-sun{animation:sunrise 2.4s var(--ease) both}
+  .hero-cloud{animation:drift 14s ease-in-out infinite alternate}
+  .hero-cloud.c2{animation-duration:18s;animation-delay:-4s}
+  .steam path{stroke-dasharray:40;animation:steam 3.2s ease-in-out infinite}
+  .steam path:nth-child(2){animation-delay:-1.4s}
+  @keyframes sunrise{from{transform:translateY(46px);opacity:.4}to{transform:none;opacity:1}}
+  @keyframes drift{from{transform:translateX(-10px)}to{transform:translateX(16px)}}
+  @keyframes steam{0%{stroke-dashoffset:40;opacity:0}30%{opacity:.9}100%{stroke-dashoffset:-40;opacity:0}}
+  .float-card{
+    position:absolute;left:0;bottom:36px;background:rgba(255,253,249,.92);backdrop-filter:blur(6px);
+    border:1px solid var(--line);border-radius:16px;padding:10px 14px;box-shadow:var(--shadow-md);
+    display:flex;align-items:center;gap:10px;animation:bob 6s ease-in-out infinite;
+  }
+  .float-card .time{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--ink)}
+  .float-card .txt{font-size:11px;color:var(--muted);line-height:1.3}
+  .float-card .txt [lang="zh"]{display:block;color:var(--ink);font-size:13px}
+  @keyframes bob{50%{transform:translateY(-6px)}}
+  .hero-vertical{position:absolute;right:26px;top:34px;writing-mode:vertical-rl;font-family:var(--han);font-size:13px;letter-spacing:.55em;color:var(--rose);opacity:.75;z-index:2}
+  .hero-vertical::after{content:"";display:block;width:1px;height:40px;background:currentColor;margin:12px auto 0;opacity:.5}
+
+  /* ---------- Stats strip ---------- */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:18px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow-sm)}
+  .stat{padding:20px 24px;border-left:1px solid var(--line-2)}
+  .stat:first-child{border-left:0}
+  .stat strong{display:block;font-family:var(--serif);font-weight:500;font-size:32px;letter-spacing:-.03em;line-height:1.1}
+  .stat span{font-size:11.5px;color:var(--muted)}
+
+  /* ---------- Tones ---------- */
+  .tone-blue{--tone:var(--blue);--tone-soft:var(--blue-soft)}
+  .tone-pink{--tone:var(--rose);--tone-soft:var(--rose-soft)}
+  .tone-peach{--tone:var(--amber);--tone-soft:var(--amber-soft)}
+  .tone-green{--tone:var(--sage);--tone-soft:var(--sage-soft)}
+
+  /* ---------- Categories ---------- */
+  .category-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+  .category-card{
+    position:relative;overflow:hidden;text-align:left;min-height:236px;padding:22px;border-radius:var(--r-lg);
+    background:var(--paper);border:1px solid var(--line);box-shadow:var(--shadow-sm);
+    display:flex;flex-direction:column;transition:transform .35s var(--ease),box-shadow .35s,border-color .35s;
+  }
+  .category-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:color-mix(in srgb,var(--tone) 30%,var(--line))}
+  .category-card .ghost{position:absolute;right:-14px;bottom:-40px;font-family:var(--han);font-weight:700;font-size:160px;line-height:1;color:var(--tone);opacity:.08;transition:transform .5s var(--ease),opacity .3s;pointer-events:none}
+  .category-card:hover .ghost{transform:translateY(-8px) rotate(-4deg);opacity:.13}
+  .cat-top{display:flex;justify-content:space-between;align-items:center}
+  .cat-num{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--tone)}
+  .cat-count{font-size:10.5px;font-weight:700;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+  .cat-cn{font-family:var(--han);font-size:24px;font-weight:600;margin-top:28px;color:var(--ink)}
+  .cat-py{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--muted)}
+  .cat-ru{font-size:13px;color:var(--ink-2);margin-top:6px}
+  .cat-progress{margin-top:auto;padding-top:20px;position:relative;z-index:1}
+  .bar{height:4px;border-radius:9px;background:var(--line-2);overflow:hidden}
+  .bar span{display:block;height:100%;background:var(--tone);border-radius:9px;transition:width .6s var(--ease)}
+  .cat-progress small{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:8px}
+  .cat-progress small b{color:var(--ink-2)}
+
+  /* ---------- Overview bottom ---------- */
+  .overview-bottom{display:grid;grid-template-columns:1.25fr .75fr;gap:14px;margin-top:14px}
+  .phrase-card{position:relative;overflow:hidden;border-radius:var(--r-lg);padding:32px;background:var(--ink);color:#eef2f5;box-shadow:var(--shadow-md)}
+  .phrase-card::after{content:"晨";position:absolute;right:-20px;top:-40px;font-family:var(--han);font-size:220px;font-weight:700;color:rgba(255,255,255,.04);line-height:1}
+  .phrase-card .eyebrow{color:rgba(238,242,245,.55)}
+  .phrase-cn{font-family:var(--han);font-size:clamp(24px,3vw,32px);font-weight:600;line-height:1.4;margin:18px 0 8px;position:relative;z-index:1}
+  .phrase-py{font-family:var(--serif);font-style:italic;color:#e7b9c4;font-size:15px}
+  .phrase-ru{color:rgba(238,242,245,.7);font-size:13.5px;margin-top:10px}
+  .phrase-foot{display:flex;align-items:center;gap:12px;margin-top:22px;position:relative;z-index:1}
+  .phrase-card .icon-btn{background:rgba(255,255,255,.1);color:#fff}
+  .phrase-card .icon-btn:hover{background:#fff;color:var(--ink)}
+  .stamp{display:inline-grid;place-items:center;width:34px;height:34px;border:1.5px solid #e08a76;color:#e08a76;border-radius:6px;font-family:var(--han);font-size:12px;line-height:1.05;transform:rotate(-6deg);text-align:center}
+  .tip-card{border-radius:var(--r-lg);padding:28px;background:linear-gradient(160deg,var(--rose-soft),var(--paper) 70%);border:1px solid #f0e2e5}
+  .tip-cn{font-family:var(--han);font-size:30px;color:#8c4f5f;margin:14px 0 2px}
+  .tip-py{font-family:var(--serif);font-style:italic;color:var(--rose);font-size:13px}
+  .tip-card p{font-size:13px;color:var(--ink-2);margin-top:12px;line-height:1.7}
+
+  /* ---------- Toolbar ---------- */
+  .toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:20px;padding:10px;border-radius:20px;background:rgba(255,253,249,.7);border:1px solid var(--line);position:sticky;top:86px;z-index:10;backdrop-filter:blur(12px)}
+  .search{position:relative;flex:1;min-width:200px}
+  .search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--faint)}
+  .search input{width:100%;border:1px solid transparent;background:var(--paper);border-radius:12px;padding:11px 14px 11px 40px;font-size:13px;transition:border-color .2s}
+  .search input:focus{outline:none;border-color:#d6cec2}
+  .select{appearance:none;border:1px solid transparent;background:var(--paper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%238b97a0' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 14px center;border-radius:12px;padding:11px 36px 11px 14px;font-size:13px;color:var(--ink-2);cursor:pointer}
+  .segmented{display:flex;padding:3px;border-radius:12px;background:rgba(31,52,70,.05)}
+  .segment-btn{padding:8px 14px;border-radius:9px;font-size:12px;font-weight:600;color:var(--muted);transition:.2s}
+  .segment-btn.active{background:var(--paper);color:var(--ink);box-shadow:var(--shadow-sm)}
+  .view-btn{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--paper);color:var(--ink-2)}
+  .view-btn:hover{color:var(--ink)}
+  .result-meta{font-size:12px;color:var(--muted);margin:-6px 4px 14px}
+
+  /* ---------- Word cards ---------- */
+  .word-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+  .word-card{
+    position:relative;min-height:232px;padding:18px;border-radius:22px;background:var(--paper);border:1px solid var(--line);
+    display:flex;flex-direction:column;transition:transform .3s var(--ease),box-shadow .3s,border-color .3s;
+    animation:rise .4s var(--ease) both;
+  }
+  .word-card::before{content:"";position:absolute;top:0;left:18px;width:28px;height:3px;border-radius:0 0 4px 4px;background:var(--tone)}
+  .word-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:#e1d9ce}
+  .word-card.is-learned{background:linear-gradient(170deg,var(--paper),#f5faf6);border-color:#d8e8de}
+  .wc-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .wc-tag{font-size:10.5px;font-weight:700;letter-spacing:.06em;color:var(--faint)}
+  .wc-tag b{font-family:var(--han);font-weight:600;color:var(--muted);letter-spacing:0;margin-right:4px}
+  .check-btn{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;border:1.5px solid var(--line);color:transparent;transition:.25s var(--ease)}
+  .check-btn:hover{border-color:var(--ok);color:var(--ok)}
+  .check-btn.done{background:var(--ok);border-color:var(--ok);color:#fff;transform:scale(1.04)}
+  .wc-hanzi{font-family:var(--han);font-weight:600;font-size:40px;line-height:1.15;text-align:center;margin:22px 0 12px;color:var(--ink);letter-spacing:.03em}
+  .wc-meta{text-align:center;min-height:44px;cursor:pointer;border-radius:10px;transition:.3s}
+  .wc-py{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--rose)}
+  .wc-ru{font-size:12.5px;color:var(--ink-2);margin-top:2px;line-height:1.45}
+  .wc-meta.is-hidden .wc-py,.wc-meta.is-hidden .wc-ru{filter:blur(7px);opacity:.55;user-select:none}
+  .wc-meta.is-hidden:hover .wc-py,.wc-meta.is-hidden:hover .wc-ru{opacity:.75}
+  .wc-foot{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:14px;border-top:1px dashed var(--line)}
+
+  .list-view{display:grid;gap:6px}
+  .word-row{display:grid;grid-template-columns:44px 120px 160px 1fr auto auto;align-items:center;gap:14px;padding:12px 16px;border-radius:14px;background:var(--paper);border:1px solid var(--line);transition:.2s}
+  .word-row:hover{border-color:#e0d8cc}
+  .word-row.is-learned{background:#f7fbf8}
+  .row-no{font-family:var(--serif);font-style:italic;color:var(--tone);font-size:14px}
+  .row-cn{font-family:var(--han);font-size:22px;font-weight:600}
+  .row-py{font-family:var(--serif);font-style:italic;color:var(--rose);font-size:14px}
+  .row-ru{font-size:13px;color:var(--ink-2)}
+  .empty-state{grid-column:1/-1;padding:50px 20px;text-align:center;border:1px dashed #ddd4c7;border-radius:22px;color:var(--muted);background:rgba(255,253,249,.6)}
+  .empty-state [lang="zh"]{display:block;font-size:30px;color:var(--faint);margin-bottom:6px}
+
+  /* ---------- Practice ---------- */
+  .ex-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+  .ex-tab{text-align:left;padding:16px 18px;border-radius:20px;background:var(--paper);border:1px solid var(--line);transition:.25s var(--ease)}
+  .ex-tab:hover{border-color:#ddd4c8;transform:translateY(-2px)}
+  .ex-tab .n{font-family:var(--serif);font-style:italic;font-size:22px;color:var(--rose);line-height:1}
+  .ex-tab .t{display:block;font-size:13.5px;font-weight:700;margin-top:10px}
+  .ex-tab small{display:block;font-size:11.5px;color:var(--muted);margin-top:2px}
+  .ex-tab.active{background:var(--ink);border-color:var(--ink);color:#fff;box-shadow:0 18px 30px -16px rgba(31,52,70,.7)}
+  .ex-tab.active .n{color:#e7b9c4}
+  .ex-tab.active small{color:rgba(255,255,255,.6)}
+
+  .ex-area{min-height:470px;padding:32px;border-radius:var(--r-xl);background:var(--paper);border:1px solid var(--line);box-shadow:var(--shadow-md)}
+  .ex-area > *{animation:rise .35s var(--ease)}
+  .ex-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:24px}
+  .ex-head p{font-size:13px;color:var(--muted);margin-top:4px}
+  .ex-meta{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:7px 12px;border-radius:999px;background:var(--paper-2);border:1px solid var(--line);white-space:nowrap}
+
+  .q-card{position:relative;overflow:hidden;text-align:center;padding:36px 24px;border-radius:24px;margin-bottom:20px;background:linear-gradient(150deg,var(--tone-soft,var(--blue-soft)),var(--paper-2) 70%);border:1px solid var(--line-2)}
+  .q-label{font-size:10.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .q-hanzi{font-family:var(--han);font-weight:600;font-size:clamp(46px,6vw,64px);line-height:1.2;margin:10px 0 6px;letter-spacing:.04em}
+  .q-py{display:inline-flex;align-items:center;gap:10px;font-family:var(--serif);font-style:italic;font-size:17px;color:var(--rose)}
+  .q-ru{font-family:var(--serif);font-size:clamp(22px,3vw,30px);margin-top:10px;color:var(--ink)}
+
+  .answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .answer{display:flex;align-items:center;gap:14px;text-align:left;padding:15px 16px;border-radius:16px;border:1px solid var(--line);background:var(--paper);font-size:14px;color:var(--ink);transition:.2s var(--ease)}
+  .answer .key{flex:none;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-size:11px;font-weight:800;color:var(--muted);background:var(--paper-2);border:1px solid var(--line)}
+  .answer [lang="zh"]{font-size:20px}
+  .answer:hover:not(:disabled){border-color:#cdbfae;transform:translateY(-1px);box-shadow:var(--shadow-sm)}
+  .answer:disabled{cursor:default}
+  .answer.correct{background:var(--ok-soft);border-color:#bcd9c7;color:#3f6f55}
+  .answer.correct .key{background:var(--ok);border-color:var(--ok);color:#fff}
+  .answer.wrong{background:var(--bad-soft);border-color:#ebc7d0;color:#8f4a5c;animation:shake .4s}
+  .answer.wrong .key{background:var(--bad);border-color:var(--bad);color:#fff}
+  .answer.dim{opacity:.5}
+  @keyframes shake{20%,60%{transform:translateX(-4px)}40%,80%{transform:translateX(4px)}}
+
+  .feedback{min-height:26px;margin:18px 2px 0;font-size:13.5px;color:var(--muted);line-height:1.6}
+  .feedback.is-ok{color:var(--ok)}
+  .feedback.is-bad{color:var(--bad)}
+  .feedback b{color:var(--ink)}
+  .ex-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:20px;padding-top:20px;border-top:1px solid var(--line-2)}
+  .pills{display:flex;gap:6px;flex-wrap:wrap}
+  .pill{font-size:11.5px;font-weight:700;color:var(--ink-2);padding:7px 12px;border-radius:999px;background:var(--paper-2);border:1px solid var(--line)}
+  .pill-hot{background:#fbefe6;border-color:#f1d8c4;color:#a4673a}
+  .btn-row{display:flex;gap:8px;flex-wrap:wrap}
+
+  .match-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .match-col{display:grid;gap:8px;align-content:start}
+  .match-btn{min-height:56px;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:var(--paper);font-size:13.5px;color:var(--ink-2);transition:.2s var(--ease)}
+  .match-btn.cn{font-family:var(--han);font-size:22px;color:var(--ink)}
+  .match-btn:hover:not(:disabled){border-color:#cdbfae;transform:translateY(-1px)}
+  .match-btn.selected{border-color:var(--ink);background:#f3f5f7;box-shadow:inset 0 0 0 1px var(--ink)}
+  .match-btn.wrong{border-color:var(--bad);background:var(--bad-soft);animation:shake .4s}
+  .match-btn.solved{border-color:#cfe3d6;background:var(--ok-soft);color:#5e8f74;opacity:.65;cursor:default}
+
+  .done-state{text-align:center;padding:30px 10px}
+  .done-state .big{font-family:var(--han);font-size:56px;font-weight:700;margin:10px 0}
+  .done-state p{color:var(--muted);font-size:14px;margin-bottom:24px}
+
+  .type-input{display:block;width:100%;max-width:440px;margin:0 auto;padding:16px 20px;text-align:center;font-family:var(--han);font-size:26px;border-radius:18px;border:1.5px solid var(--line);background:var(--paper-2);transition:.2s}
+  .type-input:focus{outline:none;border-color:var(--ink);background:#fff;box-shadow:0 0 0 5px rgba(31,52,70,.06)}
+  .type-input.ok{border-color:var(--ok);background:var(--ok-soft)}
+  .type-input.bad{border-color:var(--bad);background:var(--bad-soft)}
+  .input-hint{text-align:center;color:var(--muted);font-size:12px;margin-top:10px}
+  .details{margin-top:14px;padding:14px 16px;border-radius:14px;background:var(--paper-2);border:1px solid var(--line-2);font-size:13px;color:var(--ink-2);line-height:1.8}
+  .details .py{font-family:var(--serif);font-style:italic;color:var(--rose);font-size:15px}
+
+  .fill-sentence{font-family:var(--han);font-size:clamp(20px,2.6vw,27px);line-height:1.9;max-width:640px;margin:12px auto 0}
+  .blank{display:inline-block;min-width:84px;margin:0 4px;padding:0 8px;border-bottom:2px solid var(--rose);color:var(--rose);font-weight:600}
+  .blank.filled{animation:pop .4s var(--ease)}
+  @keyframes pop{0%{transform:scale(.85)}60%{transform:scale(1.08)}100%{transform:none}}
+
+  /* ---------- Context ---------- */
+  .context-intro{display:grid;grid-template-columns:1fr 200px;gap:24px;align-items:center;padding:32px;border-radius:var(--r-xl);background:linear-gradient(120deg,var(--paper),#f2f6f8);border:1px solid var(--line);box-shadow:var(--shadow-sm)}
+  .context-intro h3{font-family:var(--han);font-weight:600;font-size:28px;margin-top:12px}
+  .context-intro p{font-size:13.5px;color:var(--ink-2);line-height:1.75;margin-top:8px;max-width:60ch}
+  .context-art svg{width:100%;height:auto}
+
+  .timeline{list-style:none;margin:0;padding:0;position:relative}
+  .timeline::before{content:"";position:absolute;left:107px;top:10px;bottom:10px;width:1px;background:linear-gradient(var(--line),#e2d6cb,var(--line))}
+  .tl-item{display:grid;grid-template-columns:88px 40px 1fr;align-items:start;margin-bottom:12px}
+  .tl-time{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--ink);text-align:right;padding-top:18px;letter-spacing:-.02em}
+  .tl-dot{justify-self:center;margin-top:27px;width:11px;height:11px;border-radius:50%;background:var(--paper);border:2px solid var(--rose);position:relative;z-index:1;transition:.3s}
+  .tl-item:hover .tl-dot{background:var(--rose);transform:scale(1.2)}
+  .tl-card{padding:18px 20px;border-radius:20px;background:var(--paper);border:1px solid var(--line);transition:.3s var(--ease)}
+  .tl-item:hover .tl-card{box-shadow:var(--shadow-md);transform:translateX(3px)}
+  .tl-step{font-size:10.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
+  .tl-cn{font-family:var(--han);font-size:21px;font-weight:600;margin:6px 0 4px;line-height:1.5}
+  .tl-detail{font-size:13px;color:var(--ink-2);line-height:1.7;padding:10px 0 2px}
+  .tl-detail .py{font-family:var(--serif);font-style:italic;color:var(--rose);font-size:14.5px}
+  .tl-actions{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:6px}
+
+  .sequence-box{margin-top:40px;padding:32px;border-radius:var(--r-xl);background:var(--paper);border:1px solid var(--line);box-shadow:var(--shadow-md)}
+  .sequence-box > p{font-size:13.5px;color:var(--muted);margin-top:6px}
+  .sequence-list{list-style:none;padding:0;margin:22px 0;display:grid;gap:8px}
+  .seq-item{display:grid;grid-template-columns:34px 1fr auto auto;align-items:center;gap:10px;padding:12px 12px 12px 16px;border-radius:16px;background:var(--paper-2);border:1px solid var(--line);transition:.3s var(--ease)}
+  .seq-item.moved{animation:pop .35s var(--ease)}
+  .seq-no{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--rose)}
+  .seq-text b{display:block;font-size:13.5px;font-weight:700}
+  .seq-text span{font-family:var(--han);font-size:13px;color:var(--muted)}
+  .move-btn{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--paper);border:1px solid var(--line);color:var(--ink-2);transition:.2s}
+  .move-btn:hover:not(:disabled){background:var(--ink);color:#fff;border-color:var(--ink)}
+  .move-btn:disabled{opacity:.25;cursor:default}
+  .sequence-list.is-correct .seq-item{background:var(--ok-soft);border-color:#cfe3d6}
+  .sequence-list.is-correct .seq-no{color:var(--ok)}
+  .sequence-result{min-height:22px;margin-top:16px;font-size:13.5px}
+
+  .footer{text-align:center;margin-top:60px;color:var(--faint);font-size:11.5px}
+  .footer [lang="zh"]{font-size:14px;color:var(--muted);margin-right:6px}
+
+  /* ---------- Toast ---------- */
+  .toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);opacity:0;pointer-events:none;z-index:60;background:var(--ink);color:#fff;font-size:13px;font-weight:600;padding:12px 18px;border-radius:999px;box-shadow:var(--shadow-lg);transition:.35s var(--ease)}
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+
+  .mobile-nav{display:none}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:1100px){
+    .category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .hero{padding:44px}
+    .ex-tabs{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:900px){
+    .header-inner{grid-template-columns:1fr auto}
+    .top-nav{display:none}
+    .progress-text{display:none}
+    .mobile-nav{
+      display:flex;position:fixed;z-index:45;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));
+      padding:5px;border-radius:22px;background:rgba(255,253,249,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+      border:1px solid var(--line);box-shadow:var(--shadow-lg);justify-content:space-between;gap:2px;
+    }
+    .mobile-nav .nav-btn{flex:1;flex-direction:column;gap:2px;padding:8px 4px;border-radius:17px;font-size:10.5px}
+    .mobile-nav .nav-icon{font-size:16px}
+    .toast{bottom:100px}
+    .container{padding-bottom:120px}
+    .hero{grid-template-columns:1fr}
+    .hero-art{height:260px;order:-1;margin:-10px 0 -6px}
+    .hero-vertical{display:none}
+    .overview-bottom{grid-template-columns:1fr}
+    .word-row{grid-template-columns:36px 1fr auto auto;row-gap:4px}
+    .row-py{grid-column:2/3;grid-row:2}
+    .row-ru{grid-column:2/5;grid-row:3}
+  }
+  @media (max-width:640px){
+    body{font-size:14px}
+    .header-inner{height:64px;padding:0 16px}
+    .brand-sub{display:none}
+    .container{padding:20px 14px 120px}
+    .hero{padding:26px 22px 28px;border-radius:26px}
+    .hero-art{height:200px}
+    .float-card{display:none}
+    .hero-py{font-size:17px}
+    .hero .lead{font-size:13.5px}
+    .hero-actions .btn{flex:1}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .stat:nth-child(3){border-left:0}
+    .stat:nth-child(n+3){border-top:1px solid var(--line-2)}
+    .stat{padding:16px 18px}
+    .stat strong{font-size:26px}
+    .section-head{margin-top:40px;flex-direction:column;align-items:flex-start;gap:6px}
+    .page-head{flex-direction:column;align-items:flex-start}
+    .category-grid{gap:10px}
+    .category-card{min-height:200px;padding:16px}
+    .cat-cn{font-size:19px;margin-top:20px}
+    .category-card .ghost{font-size:120px}
+    .toolbar{top:72px;padding:8px}
+    .search{flex-basis:100%}
+    .select{flex:1}
+    .word-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    .word-card{padding:14px;min-height:210px}
+    .wc-hanzi{font-size:32px;margin:16px 0 10px}
+    .ex-tabs{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -14px 14px;padding:0 14px 4px;scrollbar-width:none}
+    .ex-tabs::-webkit-scrollbar{display:none}
+    .ex-tab{min-width:170px;scroll-snap-align:start}
+    .ex-area{padding:20px;border-radius:26px}
+    .ex-head{flex-direction:column;gap:10px}
+    .answers{grid-template-columns:1fr}
+    .q-card{padding:28px 16px}
+    .context-intro{grid-template-columns:1fr;padding:24px}
+    .context-art{display:none}
+    .timeline::before{left:15px}
+    .tl-item{grid-template-columns:30px 1fr}
+    .tl-time{grid-column:2;grid-row:1;text-align:left;padding:0 0 6px;font-size:18px}
+    .tl-dot{grid-column:1;grid-row:1;margin-top:8px}
+    .tl-card{grid-column:2}
+    .sequence-box{padding:22px}
+    .seq-item{grid-template-columns:26px 1fr auto auto;padding:10px}
+  }
+  @media (max-width:380px){
+    .word-grid{grid-template-columns:1fr}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5a8eaf"/><stop offset="1" stop-color="#c97f92"/></linearGradient>
+  </defs>
+</svg>
+
+<header class="app-header">
+  <div class="header-inner">
+    <div class="brand">
+      <div class="seal" aria-hidden="true">晨</div>
+      <div>
+        <div class="brand-title">Chinese <em>Daily</em></div>
+        <div class="brand-sub">лексика · повседневная жизнь</div>
+      </div>
+    </div>
+
+    <nav class="top-nav" aria-label="Основная навигация">
+      <button class="nav-btn active" data-panel="overview"><span class="nav-icon" aria-hidden="true">家</span>Обзор</button>
+      <button class="nav-btn" data-panel="vocabulary"><span class="nav-icon" aria-hidden="true">文</span>Словарь</button>
+      <button class="nav-btn" data-panel="practice"><span class="nav-icon" aria-hidden="true">练</span>Практика</button>
+      <button class="nav-btn" data-panel="context"><span class="nav-icon" aria-hidden="true">景</span>В контексте</button>
+    </nav>
+
+    <div class="header-right">
+      <div class="progress-ring" title="Мой прогресс">
+        <div class="ring">
+          <svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true">
+            <circle class="ring-bg" cx="22" cy="22" r="18" fill="none" stroke-width="4"/>
+            <circle class="ring-fill" id="ringFill" cx="22" cy="22" r="18" fill="none" stroke-width="4"/>
+          </svg>
+          <span class="ring-pct" id="progressPct">0%</span>
+        </div>
+        <div class="progress-text"><strong id="progressText">0 / 63</strong>слов знакомо</div>
+      </div>
+      <button class="reset-btn" id="resetProgress" aria-label="Сбросить прогресс" title="Сбросить прогресс">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-nav" aria-label="Мобильная навигация">
+  <button class="nav-btn active" data-panel="overview"><span class="nav-icon" aria-hidden="true">家</span>Обзор</button>
+  <button class="nav-btn" data-panel="vocabulary"><span class="nav-icon" aria-hidden="true">文</span>Словарь</button>
+  <button class="nav-btn" data-panel="practice"><span class="nav-icon" aria-hidden="true">练</span>Практика</button>
+  <button class="nav-btn" data-panel="context"><span class="nav-icon" aria-hidden="true">景</span>Контекст</button>
+</nav>
+
+<div class="container">
+<main>
+
+  <!-- ================= OVERVIEW ================= -->
+  <section class="panel active" id="panel-overview">
+    <div class="hero">
+      <div class="hero-vertical" lang="zh" aria-hidden="true">一日之计在于晨</div>
+      <div class="hero-copy">
+        <div class="hero-chips">
+          <span class="chip"><span class="dot"></span>Тема 04 · Daily routine</span>
+          <span class="chip" id="greetingChip"><span lang="zh">早上好</span> · Доброе утро</span>
+        </div>
+        <h1 lang="zh">早晨到出门</h1>
+        <div class="hero-py">zǎochén dào chūmén</div>
+        <p class="lead">От первого звонка будильника до выхода из дома. Изучаем китайскую лексику, которая помогает рассказать о своём утре — спокойно, последовательно и по-китайски.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" data-go="vocabulary">Начать изучение →</button>
+          <button class="btn btn-ghost" data-go="practice">Перейти к практике</button>
+        </div>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 320 290">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#cfe2ee"/><stop offset=".55" stop-color="#f5ddd0"/><stop offset="1" stop-color="#f1c3c3"/>
+            </linearGradient>
+            <linearGradient id="sunG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#fde6cc"/><stop offset="1" stop-color="#ef9f92"/>
+            </linearGradient>
+            <clipPath id="arch"><path d="M70 250V120a90 90 0 0 1 180 0v130Z"/></clipPath>
+          </defs>
+          <path d="M70 250V120a90 90 0 0 1 180 0v130Z" fill="url(#sky)"/>
+          <g clip-path="url(#arch)">
+            <circle cx="160" cy="190" r="62" fill="#fbe6d6" opacity=".55" class="hero-sun"/>
+            <circle cx="160" cy="190" r="38" fill="url(#sunG)" class="hero-sun"/>
+            <g class="hero-cloud" fill="#fff" opacity=".92">
+              <ellipse cx="112" cy="104" rx="28" ry="9"/><circle cx="104" cy="98" r="10"/><circle cx="120" cy="94" r="13"/>
+            </g>
+            <g class="hero-cloud c2" fill="#fff" opacity=".75">
+              <ellipse cx="210" cy="138" rx="22" ry="7"/><circle cx="204" cy="133" r="8"/><circle cx="216" cy="130" r="10"/>
+            </g>
+            <path d="M60 222q60-34 116-12t94-10v60H60Z" fill="#b2cfdd" opacity=".8"/>
+            <path d="M60 236q70-26 130-6t80-8v40H60Z" fill="#82abc3"/>
+          </g>
+          <path d="M70 250V120a90 90 0 0 1 180 0v130" fill="none" stroke="#fffdf9" stroke-width="10" stroke-linejoin="round"/>
+          <line x1="160" y1="30" x2="160" y2="250" stroke="#fffdf9" stroke-width="6"/>
+          <line x1="70" y1="152" x2="250" y2="152" stroke="#fffdf9" stroke-width="6"/>
+          <rect x="44" y="248" width="232" height="14" rx="7" fill="#fffdf9"/>
+          <rect x="56" y="262" width="208" height="6" rx="3" fill="#e9e1d6"/>
+          <!-- plant -->
+          <g transform="translate(86 206)">
+            <path d="M14 18c-8-10-14-14-16-24 8 2 14 10 16 24Z" fill="#8fb39d"/>
+            <path d="M14 18c2-14 8-22 16-26 0 12-6 20-16 26Z" fill="#6e9a82"/>
+            <path d="M14 18c-2-12 0-20 4-28 4 10 2 20-4 28Z" fill="#a6c6b1"/>
+            <path d="M0 18h28l-4 24H4Z" fill="#e7b69f"/>
+            <rect x="-2" y="16" width="32" height="5" rx="2.5" fill="#dca58c"/>
+          </g>
+          <!-- cup -->
+          <g transform="translate(204 220)">
+            <g class="steam" fill="none" stroke="#d6a5b1" stroke-width="2" stroke-linecap="round">
+              <path d="M8-4c-5-6 5-10 0-18"/><path d="M18-4c-5-6 5-10 0-18"/>
+            </g>
+            <path d="M0 2h28v16a10 10 0 0 1-10 10h-8A10 10 0 0 1 0 18Z" fill="#fffdf9" stroke="#c97f92" stroke-width="2"/>
+            <path d="M28 7h3a6 6 0 0 1 0 12h-3" fill="none" stroke="#c97f92" stroke-width="2"/>
+          </g>
+        </svg>
+        <div class="float-card">
+          <div class="time">07:00</div>
+          <div class="txt"><span lang="zh">闹钟响了</span>будильник зазвонил</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><strong id="learnedStat">0</strong><span>слов выучено</span></div>
+      <div class="stat"><strong id="remainingStat">63</strong><span>осталось повторить</span></div>
+      <div class="stat"><strong id="pctStat">0%</strong><span>темы пройдено</span></div>
+      <div class="stat"><strong>4</strong><span>формата практики</span></div>
+    </div>
+
+    <div class="section-head">
+      <div><div class="eyebrow">Маршрут занятия</div><h2>Четыре части <em>одного утра</em></h2></div>
+      <div class="meta">63 слова · 4 тематических блока</div>
+    </div>
+    <div class="category-grid" id="categoryGrid"></div>
+
+    <div class="overview-bottom">
+      <div class="phrase-card">
+        <div class="eyebrow">Фраза дня</div>
+        <div class="phrase-cn" lang="zh" id="phraseCn"></div>
+        <div class="phrase-py" id="phrasePy"></div>
+        <div class="phrase-ru" id="phraseRu"></div>
+        <div class="phrase-foot">
+          <button class="icon-btn" id="phraseSpeak" aria-label="Произнести фразу"></button>
+          <span class="stamp" lang="zh" aria-hidden="true">今<br>日</span>
+        </div>
+      </div>
+      <div class="tip-card">
+        <div class="eyebrow">Совет</div>
+        <div class="tip-cn" lang="zh">慢慢来</div>
+        <div class="tip-py">mànmàn lái — не спеши</div>
+        <p>Изучай слова небольшими порциями. Отмечай те, что уже уверенно узнаёшь: прогресс сохраняется в этом браузере, и к занятиям можно вернуться в любое время.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= VOCABULARY ================= -->
+  <section class="panel" id="panel-vocabulary">
+    <div class="page-head">
+      <div>
+        <div class="eyebrow">Раздел 01 · Vocabulary</div>
+        <h2>Твой <em>словарь</em></h2>
+        <p class="lead">Изучай лексику по тематическим блокам. В режиме «Повторение» пиньинь и перевод скрыты — сначала вспомни сама, затем нажми, чтобы проверить.</p>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <label class="search">
+        <span class="sr-only">Поиск</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="searchWords" type="search" placeholder="Иероглиф, пиньинь или перевод…" autocomplete="off" />
+      </label>
+      <select class="select" id="categoryFilter" aria-label="Выбрать раздел"></select>
+      <div class="segmented" role="group" aria-label="Режим">
+        <button class="segment-btn active" data-mode="study">Изучение</button>
+        <button class="segment-btn" data-mode="recall">Повторение</button>
+      </div>
+      <button class="view-btn" id="switchView" aria-label="Показать списком" title="Показать списком"></button>
+    </div>
+    <div class="result-meta" id="resultMeta" aria-live="polite"></div>
+    <div id="wordContainer" class="word-grid"></div>
+  </section>
+
+  <!-- ================= PRACTICE ================= -->
+  <section class="panel" id="panel-practice">
+    <div class="page-head">
+      <div>
+        <div class="eyebrow">Раздел 02 · Practice</div>
+        <h2>Проверим, что <em>запомнилось</em></h2>
+        <p class="lead">Выбери формат тренировки. Вопросы и варианты ответов перемешиваются, а в заданиях с вариантами можно отвечать клавишами 1–4.</p>
+      </div>
+    </div>
+    <div class="ex-tabs" role="tablist">
+      <button class="ex-tab active" data-exercise="choice" role="tab"><span class="n">01</span><span class="t">Выбери перевод</span><small>Распознавание значения</small></button>
+      <button class="ex-tab" data-exercise="match" role="tab"><span class="n">02</span><span class="t">Соедини пары</span><small>Иероглифы и значения</small></button>
+      <button class="ex-tab" data-exercise="type" role="tab"><span class="n">03</span><span class="t">Вспомни слово</span><small>Активное воспроизведение</small></button>
+      <button class="ex-tab" data-exercise="fill" role="tab"><span class="n">04</span><span class="t">Заполни пропуск</span><small>Лексика в предложении</small></button>
+    </div>
+    <div class="ex-area" id="exerciseArea"></div>
+  </section>
+
+  <!-- ================= CONTEXT ================= -->
+  <section class="panel" id="panel-context">
+    <div class="page-head">
+      <div>
+        <div class="eyebrow">Раздел 03 · In context</div>
+        <h2>Моё утро <em>по-китайски</em></h2>
+        <p class="lead">Посмотри, как отдельные слова складываются в связный рассказ о повседневных делах.</p>
+      </div>
+    </div>
+
+    <div class="context-intro">
+      <div>
+        <div class="eyebrow" lang="zh">从早晨开始</div>
+        <h3 lang="zh">一个普通的早上</h3>
+        <p>Обычное утро состоит из небольших действий. Прочитай короткие фразы, послушай их, раскрой пиньинь и перевод, а затем попробуй восстановить правильную последовательность.</p>
+      </div>
+      <div class="context-art" aria-hidden="true">
+        <svg viewBox="0 0 200 130">
+          <circle cx="100" cy="70" r="56" fill="#f8e9ed"/>
+          <circle cx="100" cy="70" r="40" fill="#fffdf9" stroke="#e6dcd0" stroke-width="2"/>
+          <line x1="100" y1="70" x2="100" y2="42" stroke="#1f3446" stroke-width="3" stroke-linecap="round"/>
+          <line x1="100" y1="70" x2="120" y2="70" stroke="#c97f92" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="100" cy="70" r="4" fill="#1f3446"/>
+          <g fill="#b3bcc2"><circle cx="100" cy="36" r="2"/><circle cx="134" cy="70" r="2"/><circle cx="100" cy="104" r="2"/><circle cx="66" cy="70" r="2"/></g>
+          <path d="M62 30l-10-10M138 30l10-10" stroke="#c97f92" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="section-head">
+      <div><div class="eyebrow">Morning timeline</div><h2>Как проходит <em>утро</em></h2></div>
+      <button class="link-btn" id="toggleAllContext">Раскрыть все подсказки</button>
+    </div>
+    <ol class="timeline" id="contextTimeline"></ol>
+
+    <div class="sequence-box">
+      <div class="eyebrow">Мини-задание</div>
+      <h3>Расставь события по порядку</h3>
+      <p>Перемещай строки стрелками вверх и вниз, затем проверь свою последовательность.</p>
+      <ol class="sequence-list" id="sequenceList"></ol>
+      <div class="btn-row">
+        <button class="btn btn-primary" id="checkSequence">Проверить порядок</button>
+        <button class="btn btn-soft" id="shuffleSequence">Перемешать заново ↻</button>
+      </div>
+      <div class="sequence-result" id="sequenceResult" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <div class="footer"><span lang="zh">加油！</span>Удачи в изучении · Chinese Daily</div>
+</main>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ===================== DATA ===================== */
+const sections = [
+  { id:'wake', number:'4.1', tone:'blue', ghost:'醒', cn:'早上起床', py:'zǎoshang qǐchuáng', ru:'Утреннее пробуждение', words:[
+    ['闹钟','nàozhōng','будильник'],['响','xiǎng','звонить, звучать'],['关掉','guāndiào','выключать'],['起床','qǐchuáng','вставать с кровати'],['赖床','lài chuáng','залеживаться в кровати'],['铺床','pū chuáng','заправлять кровать'],['整理','zhěnglǐ','приводить в порядок'],['被子','bèizi','одеяло'],['枕头','zhěntou','подушка'],['开窗','kāi chuāng','открывать окно'],['通风','tōngfēng','проветривать'],['乱','luàn','беспорядочный, неубранный']
+  ]},
+  { id:'wash', number:'4.2', tone:'pink', ghost:'洗', cn:'洗漱和护肤', py:'xǐshù hé hùfū', ru:'Умывание и уход за собой', words:[
+    ['刷牙','shuā yá','чистить зубы'],['牙刷','yáshuā','зубная щётка'],['牙膏','yágāo','зубная паста'],['洗澡','xǐzǎo','принимать душ, мыться'],['洗脸','xǐ liǎn','умываться'],['水龙头','shuǐlóngtóu','кран'],['洗面奶','xǐmiànnǎi','средство для умывания'],['打湿','dǎ shī','намочить'],['冲干净','chōng gānjìng','смыть дочиста'],['擦干','cā gān','вытереть насухо'],['涂','tú','наносить (крем, средство)'],['嘴唇','zuǐchún','губы'],['皮肤','pífū','кожа'],['保湿','bǎoshī','увлажнять, увлажнение'],['眼霜','yǎnshuāng','крем для век'],['化妆','huàzhuāng','краситься, делать макияж'],['换衣服','huàn yīfu','переодеваться'],['口渴','kǒukě','хотеть пить, испытывать жажду']
+  ]},
+  { id:'breakfast', number:'4.3', tone:'peach', ghost:'食', cn:'早餐', py:'zǎocān', ru:'Завтрак', words:[
+    ['温水','wēnshuǐ','тёплая вода'],['早餐','zǎocān','завтрак'],['吐司','tǔsī','тостовый хлеб, тост'],['烤','kǎo','запекать, поджаривать'],['面包','miànbāo','хлеб'],['果酱','guǒjiàng','джем'],['黄油','huángyóu','сливочное масло'],['芝士','zhīshì','сыр'],['丰盛','fēngshèng','обильный, сытный'],['冰箱','bīngxiāng','холодильник'],['咖啡','kāfēi','кофе'],['包子','bāozi','баоцзы, китайские паровые пирожки'],['面条','miàntiáo','лапша'],['肠胃','chángwèi','желудок и кишечник']
+  ]},
+  { id:'study', number:'4.4', tone:'green', ghost:'学', cn:'学习和准备', py:'xuéxí hé zhǔnbèi', ru:'Учёба и сборы', words:[
+    ['预习','yùxí','готовиться к уроку заранее'],['复习','fùxí','повторять материал'],['课程','kèchéng','курс, занятие'],['生词','shēngcí','новые слова'],['语法','yǔfǎ','грамматика'],['逻辑','luójí','логика'],['复杂','fùzá','сложный'],['头疼','tóuténg','болит голова; головная боль'],['收拾','shōushi','собирать, приводить в порядок'],['准备','zhǔnbèi','готовиться'],['出门','chūmén','выходить из дома'],['出发','chūfā','отправляться'],['教材','jiàocái','учебник, учебные материалы'],['笔记本','bǐjìběn','тетрадь'],['笔袋','bǐdài','пенал'],['钱包','qiánbāo','кошелёк'],['眼镜','yǎnjìng','очки'],['资料','zīliào','материалы, документы'],['护手霜','hùshǒushuāng','крем для рук']
+  ]}
+];
+
+const fillQuestions = [
+  {s:'早上闹钟___了，我马上起床。',py:'Zǎoshang nàozhōng ___ le, wǒ mǎshàng qǐchuáng.',ru:'Утром будильник зазвенел, и я сразу встала.',a:'响',opts:['响','关掉','赖床','整理'],why:'响 означает «звучать, звонить». Здесь речь о том, что будильник зазвенел.'},
+  {s:'洗脸前，我先把脸___。',py:'Xǐ liǎn qián, wǒ xiān bǎ liǎn ___.',ru:'Перед умыванием я сначала смачиваю лицо.',a:'打湿',opts:['打湿','擦干','保湿','涂'],why:'打湿 — намочить, сделать влажным.'},
+  {s:'洗面奶要用水___。',py:'Xǐmiànnǎi yào yòng shuǐ ___.',ru:'Средство для умывания нужно тщательно смыть водой.',a:'冲干净',opts:['冲干净','开窗','烤','收拾'],why:'冲干净 — смыть дочиста, тщательно промыть.'},
+  {s:'洗脸以后，用毛巾把脸___。',py:'Xǐ liǎn yǐhòu, yòng máojīn bǎ liǎn ___.',ru:'После умывания нужно вытереть лицо полотенцем насухо.',a:'擦干',opts:['擦干','打湿','通风','涂'],why:'擦干 — вытереть насухо.'},
+  {s:'早上起床以后，我会___，让房间通风。',py:'Zǎoshang qǐchuáng yǐhòu, wǒ huì ___, ràng fángjiān tōngfēng.',ru:'После пробуждения я открываю окно, чтобы проветрить комнату.',a:'开窗',opts:['开窗','关掉','赖床','出发'],why:'开窗 — открыть окно. 通风 — проветривать.'},
+  {s:'我用牙刷和牙膏___。',py:'Wǒ yòng yáshuā hé yágāo ___.',ru:'Я чищу зубы зубной щёткой и пастой.',a:'刷牙',opts:['刷牙','洗澡','化妆','预习'],why:'刷牙 — чистить зубы. Для этого нужны 牙刷 и 牙膏.'},
+  {s:'我喜欢在吐司上涂___。',py:'Wǒ xǐhuan zài tǔsī shàng tú ___.',ru:'Я люблю намазывать джем на тост.',a:'果酱',opts:['果酱','肠胃','教材','枕头'],why:'果酱 — джем, варенье.'},
+  {s:'出门前，我检查一下今天上课要用的___。',py:'Chūmén qián, wǒ jiǎnchá yíxià jīntiān shàngkè yào yòng de ___.',ru:'Перед выходом я проверяю материалы, которые понадобятся сегодня на занятии.',a:'资料',opts:['资料','黄油','眼霜','被子'],why:'资料 — материалы, документы.'},
+  {s:'这个语法有一点儿___，我需要多复习。',py:'Zhège yǔfǎ yǒu yìdiǎnr ___, wǒ xūyào duō fùxí.',ru:'Эта грамматика немного сложная, мне нужно больше повторять.',a:'复杂',opts:['复杂','丰盛','口渴','温水'],why:'复杂 — сложный, непростой.'},
+  {s:'出门前，我要___书包。',py:'Chūmén qián, wǒ yào ___ shūbāo.',ru:'Перед выходом мне нужно собрать вещи в рюкзак.',a:'收拾',opts:['收拾','通风','烤','响'],why:'收拾书包 — собрать, привести в порядок рюкзак.'},
+  {s:'早上我喜欢喝一杯___。',py:'Zǎoshang wǒ xǐhuan hē yì bēi ___.',ru:'Утром я люблю выпить стакан тёплой воды.',a:'温水',opts:['温水','芝士','枕头','面条'],why:'温水 — тёплая вода. Остальные варианты не пьют.'},
+  {s:'今天的早餐很___，有面包、包子和咖啡。',py:'Jīntiān de zǎocān hěn ___, yǒu miànbāo, bāozi hé kāfēi.',ru:'Сегодняшний завтрак очень обильный: есть хлеб, баоцзы и кофе.',a:'丰盛',opts:['丰盛','复杂','乱','口渴'],why:'丰盛 описывает обильную, разнообразную еду.'}
+];
+
+const contextSteps = [
+  {time:'07:00',cn:'闹钟响了，我关掉闹钟。',py:'Nàozhōng xiǎng le, wǒ guāndiào nàozhōng.',ru:'Будильник зазвонил, и я выключила его.',label:'Выключить будильник'},
+  {time:'07:05',cn:'起床以后，我整理床铺。',py:'Qǐchuáng yǐhòu, wǒ zhěnglǐ chuángpù.',ru:'После пробуждения я привожу кровать в порядок.',label:'Привести кровать в порядок'},
+  {time:'07:10',cn:'然后我开窗通风。',py:'Ránhòu wǒ kāi chuāng tōngfēng.',ru:'Затем я открываю окно и проветриваю комнату.',label:'Проветрить комнату'},
+  {time:'07:20',cn:'我洗脸、刷牙，还要洗澡。',py:'Wǒ xǐ liǎn, shuā yá, hái yào xǐzǎo.',ru:'Я умываюсь, чищу зубы и принимаю душ.',label:'Умыться и привести себя в порядок'},
+  {time:'07:40',cn:'我吃早餐，喝一杯温水。',py:'Wǒ chī zǎocān, hē yì bēi wēnshuǐ.',ru:'Я завтракаю и выпиваю стакан тёплой воды.',label:'Позавтракать'},
+  {time:'08:10',cn:'最后，我收拾教材和笔记本，准备出门。',py:'Zuìhòu, wǒ shōushi jiàocái hé bǐjìběn, zhǔnbèi chūmén.',ru:'Наконец, я собираю учебники и тетрадь и готовлюсь выйти из дома.',label:'Собрать вещи и выйти'}
+];
+
+const phrases = [
+  {cn:'美好的一天，从早晨开始。',py:'Měihǎo de yì tiān, cóng zǎochén kāishǐ.',ru:'Прекрасный день начинается с утра.'},
+  {cn:'一日之计在于晨。',py:'Yí rì zhī jì zàiyú chén.',ru:'План всего дня закладывается утром.'},
+  {cn:'早睡早起身体好。',py:'Zǎo shuì zǎo qǐ shēntǐ hǎo.',ru:'Рано ложиться и рано вставать — полезно для здоровья.'},
+  {cn:'慢慢来，比较快。',py:'Mànmàn lái, bǐjiào kuài.',ru:'Тише едешь — дальше будешь (букв. «медленно — значит быстрее»).'}
+];
+
+/* ===================== STATE ===================== */
+const allWords = sections.flatMap(s => s.words.map((w,i) => ({
+  cn:w[0], py:w[1], ru:w[2], section:s.id, sectionTitle:s.cn, sectionNumber:s.number, tone:s.tone, index:i+1
+})));
+const totalWords = allWords.length;
+const STORAGE_KEY = 'morningRoutineChineseProgress_v1';
+const knownWords = new Set(allWords.map(w => w.cn));
+
+let learned = new Set();
+try { learned = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]').filter(cn => knownWords.has(cn))); } catch(e) { learned = new Set(); }
+
+let activePanel = 'overview';
+let vocabularyMode = 'study';
+let listView = false;
+const revealedWords = new Set();
+const hiddenWords = new Set();
+let currentExercise = 'choice';
+let choiceState = null, matchState = null, typeState = null, fillState = null;
+const choiceScore = {right:0, done:0, streak:0};
+const typeScore = {right:0, done:0};
+const fillScore = {right:0, done:0};
+let sequenceItems = [];
+let lastChoice = null, lastType = null, lastFill = null;
+
+/* ===================== HELPERS ===================== */
+const $ = (sel, root=document) => root.querySelector(sel);
+const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
+const shuffle = arr => { const c=[...arr]; for(let i=c.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [c[i],c[j]]=[c[j],c[i]]; } return c; };
+const pickDifferent = (arr, prev) => { if(arr.length<2) return arr[0]; let x; do { x = arr[Math.floor(Math.random()*arr.length)]; } while(x===prev); return x; };
+const esc = v => String(v).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+const pad = n => String(n).padStart(2,'0');
+
+const ICON_SPEAK = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+const ICON_CHECK = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+const ICON_LIST = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg>';
+const ICON_GRID = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2"/></svg>';
+const ICON_UP = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg>';
+const ICON_DOWN = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
+const speakBtn = text => `<button class="icon-btn" data-speak="${esc(text)}" aria-label="Произнести" title="Произнести">${ICON_SPEAK}</button>`;
+
+/* Speech */
+const canSpeak = 'speechSynthesis' in window && typeof SpeechSynthesisUtterance !== 'undefined';
+if(!canSpeak) document.documentElement.classList.add('no-speech');
+function speak(text, btn){
+  if(!canSpeak) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'zh-CN'; u.rate = .82;
+  const voices = speechSynthesis.getVoices();
+  const v = voices.find(v => /zh[-_]CN/i.test(v.lang)) || voices.find(v => /^zh/i.test(v.lang));
+  if(v) u.voice = v;
+  if(btn){ btn.classList.add('playing'); u.onend = u.onerror = () => btn.classList.remove('playing'); }
+  speechSynthesis.speak(u);
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-speak]');
+  if(b) speak(b.dataset.speak, b);
+});
+
+/* Toast */
+let toastTimer;
+function toast(msg){
+  const t = $('#toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+/* ===================== PROGRESS ===================== */
+function saveProgress(){
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify([...learned])); }
+  catch(e){ console.warn('Не удалось сохранить прогресс в этом браузере.', e); }
+  updateProgress();
+}
+function updateProgress(){
+  const c = learned.size, pct = Math.round(c / totalWords * 100);
+  const circ = 2 * Math.PI * 18;
+  const ring = $('#ringFill');
+  ring.style.strokeDasharray = circ;
+  ring.style.strokeDashoffset = circ * (1 - c / totalWords);
+  $('#progressText').textContent = `${c} / ${totalWords}`;
+  $('#progressPct').textContent = pct + '%';
+  $('#learnedStat').textContent = c;
+  $('#remainingStat').textContent = totalWords - c;
+  $('#pctStat').textContent = pct + '%';
+}
+function toggleLearn(cn){
+  if(learned.has(cn)){ learned.delete(cn); toast(`«${cn}» снова в повторении`); }
+  else {
+    learned.add(cn);
+    toast(learned.size === totalWords ? '太棒了！ Все слова темы выучены 🎉' : `«${cn}» — знакомо ✓`);
+  }
+  saveProgress(); renderCategories(); renderWords();
+}
+
+/* ===================== NAVIGATION ===================== */
+const PANELS = ['overview','vocabulary','practice','context'];
+function goTo(panel, {scroll=true} = {}){
+  if(!PANELS.includes(panel)) panel = 'overview';
+  activePanel = panel;
+  $$('.panel').forEach(p => p.classList.toggle('active', p.id === `panel-${panel}`));
+  $$('[data-panel]').forEach(b => b.classList.toggle('active', b.dataset.panel === panel));
+  if(panel === 'vocabulary') renderWords();
+  if(panel === 'practice' && !$('#exerciseArea').dataset.ready){ renderExercise(); $('#exerciseArea').dataset.ready = '1'; }
+  try { history.replaceState(null, '', '#' + panel); } catch(e) {}
+  if(scroll) window.scrollTo({top:0, behavior:'smooth'});
+}
+$$('[data-panel]').forEach(btn => btn.addEventListener('click', () => goTo(btn.dataset.panel)));
+$$('[data-go]').forEach(btn => btn.addEventListener('click', () => goTo(btn.dataset.go)));
+
+/* ===================== OVERVIEW ===================== */
+function renderCategories(){
+  $('#categoryGrid').innerHTML = sections.map(s => {
+    const known = s.words.filter(w => learned.has(w[0])).length;
+    const pct = Math.round(known / s.words.length * 100);
+    return `<button class="category-card tone-${s.tone}" data-category-go="${s.id}">
+      <span class="ghost" lang="zh" aria-hidden="true">${s.ghost}</span>
+      <div class="cat-top"><span class="cat-num">${s.number}</span><span class="cat-count">${pad(s.words.length)} слов</span></div>
+      <div class="cat-cn" lang="zh">${s.cn}</div>
+      <div class="cat-py">${s.py}</div>
+      <div class="cat-ru">${s.ru}</div>
+      <div class="cat-progress"><div class="bar"><span style="width:${pct}%"></span></div><small><span>знакомо</span><b>${known} из ${s.words.length}</b></small></div>
+    </button>`;
+  }).join('');
+}
+$('#categoryGrid').addEventListener('click', e => {
+  const btn = e.target.closest('[data-category-go]');
+  if(!btn) return;
+  $('#categoryFilter').value = btn.dataset.categoryGo;
+  goTo('vocabulary');
+});
+
+function renderPhraseAndGreeting(){
+  const now = new Date();
+  const dayOfYear = Math.floor((now - new Date(now.getFullYear(),0,0)) / 864e5);
+  const p = phrases[dayOfYear % phrases.length];
+  $('#phraseCn').textContent = p.cn;
+  $('#phrasePy').textContent = p.py;
+  $('#phraseRu').textContent = p.ru;
+  const sb = $('#phraseSpeak'); sb.innerHTML = ICON_SPEAK; sb.dataset.speak = p.cn;
+
+  const h = now.getHours();
+  const g = h >= 5 && h < 11 ? ['早上好','Доброе утро']
+          : h >= 11 && h < 13 ? ['中午好','Добрый день']
+          : h >= 13 && h < 18 ? ['下午好','Добрый день']
+          : ['晚上好','Добрый вечер'];
+  $('#greetingChip').innerHTML = `<span lang="zh">${g[0]}</span> · ${g[1]}`;
+}
+
+/* ===================== VOCABULARY ===================== */
+function buildFilter(){
+  $('#categoryFilter').innerHTML = '<option value="all">Все разделы</option>' +
+    sections.map(s => `<option value="${s.id}">${s.number} · ${s.cn} — ${s.ru}</option>`).join('');
+}
+function renderWords(){
+  const query = $('#searchWords').value.trim().toLowerCase();
+  const cat = $('#categoryFilter').value;
+  const filtered = allWords.filter(w =>
+    (cat === 'all' || w.section === cat) &&
+    (!query || w.cn.includes(query) || w.py.toLowerCase().includes(query) || w.ru.toLowerCase().includes(query))
+  );
+  const container = $('#wordContainer');
+  container.className = listView ? 'list-view' : 'word-grid';
+  const knownInView = filtered.filter(w => learned.has(w.cn)).length;
+  $('#resultMeta').textContent = filtered.length ? `Показано слов: ${filtered.length} · знакомо: ${knownInView}` : '';
+
+  if(!filtered.length){
+    container.innerHTML = '<div class="empty-state"><span lang="zh">没有</span>Ничего не найдено. Попробуй изменить запрос.</div>';
+    return;
+  }
+
+  if(listView){
+    container.innerHTML = filtered.map(w => {
+      const isL = learned.has(w.cn);
+      return `<div class="word-row tone-${w.tone} ${isL?'is-learned':''}">
+        <span class="row-no">${w.sectionNumber.split('.')[1]}.${pad(w.index)}</span>
+        <span class="row-cn" lang="zh">${w.cn}</span>
+        <span class="row-py">${w.py}</span>
+        <span class="row-ru">${w.ru}</span>
+        ${speakBtn(w.cn)}
+        <button class="check-btn ${isL?'done':''}" data-learn="${esc(w.cn)}" aria-pressed="${isL}" aria-label="${isL?'Убрать отметку':'Отметить как знакомое'}" title="${isL?'Знакомо':'Отметить как знакомое'}">${ICON_CHECK}</button>
+      </div>`;
+    }).join('');
+  } else {
+    container.innerHTML = filtered.map((w, i) => {
+      const isL = learned.has(w.cn);
+      const shown = vocabularyMode === 'study' ? !hiddenWords.has(w.cn) : revealedWords.has(w.cn);
+      return `<article class="word-card tone-${w.tone} ${isL?'is-learned':''}" style="animation-delay:${Math.min(i,18)*18}ms">
+        <div class="wc-top">
+          <span class="wc-tag"><b lang="zh">${w.sectionTitle}</b>${w.sectionNumber} · ${pad(w.index)}</span>
+          <button class="check-btn ${isL?'done':''}" data-learn="${esc(w.cn)}" aria-pressed="${isL}" aria-label="${isL?'Убрать отметку':'Отметить как знакомое'}" title="${isL?'Знакомо':'Отметить как знакомое'}">${ICON_CHECK}</button>
+        </div>
+        <div class="wc-hanzi" lang="zh">${w.cn}</div>
+        <div class="wc-meta ${shown?'':'is-hidden'}" data-reveal="${esc(w.cn)}" title="${shown?'':'Нажми, чтобы проверить себя'}">
+          <div class="wc-py">${w.py}</div>
+          <div class="wc-ru">${w.ru}</div>
+        </div>
+        <div class="wc-foot">
+          ${speakBtn(w.cn)}
+          <button class="link-btn" data-reveal="${esc(w.cn)}">${shown?'Скрыть':'Проверить себя'}</button>
+        </div>
+      </article>`;
+    }).join('');
+  }
+}
+$('#wordContainer').addEventListener('click', e => {
+  const learnBtn = e.target.closest('[data-learn]');
+  if(learnBtn) return toggleLearn(learnBtn.dataset.learn);
+  const rev = e.target.closest('[data-reveal]');
+  if(rev){
+    const word = rev.dataset.reveal;
+    const set = vocabularyMode === 'study' ? hiddenWords : revealedWords;
+    set.has(word) ? set.delete(word) : set.add(word);
+    renderWords();
+  }
+});
+$('#searchWords').addEventListener('input', renderWords);
+$('#categoryFilter').addEventListener('change', renderWords);
+$$('[data-mode]').forEach(btn => btn.addEventListener('click', () => {
+  vocabularyMode = btn.dataset.mode;
+  revealedWords.clear(); hiddenWords.clear();
+  $$('[data-mode]').forEach(b => b.classList.toggle('active', b === btn));
+  if(listView && vocabularyMode === 'recall'){ listView = false; updateViewBtn(); }
+  renderWords();
+}));
+function updateViewBtn(){
+  const b = $('#switchView');
+  b.innerHTML = listView ? ICON_GRID : ICON_LIST;
+  b.title = b.ariaLabel = listView ? 'Показать карточками' : 'Показать списком';
+}
+$('#switchView').addEventListener('click', () => { listView = !listView; updateViewBtn(); renderWords(); });
+$('#resetProgress').addEventListener('click', () => {
+  if(!learned.size){ toast('Прогресс уже пуст'); return; }
+  if(confirm('Сбросить отметки обо всех изученных словах?')){
+    learned.clear(); saveProgress(); renderCategories(); renderWords(); toast('Прогресс сброшен');
+  }
+});
+
+/* ===================== PRACTICE ===================== */
+$$('[data-exercise]').forEach(btn => btn.addEventListener('click', () => {
+  currentExercise = btn.dataset.exercise;
+  $$('[data-exercise]').forEach(b => { b.classList.toggle('active', b === btn); b.setAttribute('aria-selected', b === btn); });
+  renderExercise();
+}));
+function renderExercise(){
+  const area = $('#exerciseArea');
+  if(currentExercise === 'choice') renderChoice(area);
+  if(currentExercise === 'match') renderMatch(area);
+  if(currentExercise === 'type') renderType(area);
+  if(currentExercise === 'fill') renderFill(area);
+}
+const exHead = (n, title, desc, meta) => `<div class="ex-head"><div><div class="eyebrow">Упражнение ${n}</div><h3>${title}</h3><p>${desc}</p></div><span class="ex-meta">${meta}</span></div>`;
+
+/* --- 01 Choice --- */
+function newChoice(){
+  const word = pickDifferent(allWords, lastChoice); lastChoice = word;
+  const distractors = shuffle(allWords.filter(w => w.cn !== word.cn && w.ru !== word.ru)).slice(0,3);
+  choiceState = {word, options:shuffle([word, ...distractors]), answered:false, selected:null};
+}
+function renderChoice(area){
+  if(!choiceState) newChoice();
+  const {word:w, options, answered, selected} = choiceState;
+  const ok = selected === w.cn;
+  area.innerHTML = `${exHead('01','Выбери правильный перевод','Посмотри на слово и выбери его значение.',`Вопрос ${answered ? choiceScore.done : choiceScore.done + 1}`)}
+    <div class="q-card tone-${w.tone}">
+      <div class="q-label">Что означает это слово?</div>
+      <div class="q-hanzi" lang="zh">${w.cn}</div>
+      <div class="q-py">${w.py} ${speakBtn(w.cn)}</div>
+    </div>
+    <div class="answers">${options.map((o,i) => {
+      let cls = '';
+      if(answered){ if(o.cn === w.cn) cls = 'correct'; else if(o.cn === selected) cls = 'wrong'; else cls = 'dim'; }
+      return `<button class="answer ${cls}" data-choice="${i}" ${answered?'disabled':''}><span class="key">${i+1}</span><span>${o.ru}</span></button>`;
+    }).join('')}</div>
+    <div class="feedback ${answered?(ok?'is-ok':'is-bad'):''}" aria-live="polite">${answered ? (ok ? 'Верно! Отличная работа.' : `Правильный ответ: <b>${w.ru}</b>`) : 'Выбери один вариант ответа.'}</div>
+    <div class="ex-foot">
+      <div class="pills"><span class="pill">Верно: ${choiceScore.right} / ${choiceScore.done}</span>${choiceScore.streak > 1 ? `<span class="pill pill-hot">Серия: ${choiceScore.streak} 🔥</span>` : ''}</div>
+      <button class="btn btn-primary" data-action="next-choice" ${answered?'':'disabled'}>Следующий вопрос →</button>
+    </div>`;
+}
+function answerChoice(i){
+  if(!choiceState || choiceState.answered) return;
+  const sel = choiceState.options[i]; if(!sel) return;
+  choiceState.answered = true; choiceState.selected = sel.cn;
+  choiceScore.done++;
+  if(sel.cn === choiceState.word.cn){ choiceScore.right++; choiceScore.streak++; } else choiceScore.streak = 0;
+  renderExercise();
+}
+
+/* --- 02 Match --- */
+function newMatch(){
+  const words = [];
+  for(const w of shuffle(allWords)){ if(words.length === 5) break; if(!words.some(x => x.ru === w.ru)) words.push(w); }
+  matchState = {words, meanings:shuffle(words), selWord:null, selMeaning:null, solved:new Set(), wrong:false, locked:false, mistakes:0, feedback:'Выбери китайское слово, затем соответствующий перевод.'};
+}
+function renderMatch(area){
+  if(!matchState) newMatch();
+  const m = matchState, total = m.words.length;
+  if(m.solved.size === total){
+    area.innerHTML = `${exHead('02','Все пары найдены!','Ты правильно соединила все слова и переводы.',`${total} / ${total}`)}
+      <div class="q-card tone-green done-state">
+        <div class="q-label">Задание завершено</div>
+        <div class="big" lang="zh">做得好！</div>
+        <p>${m.mistakes === 0 ? 'Без единой ошибки — безупречно!' : `Ошибок по пути: ${m.mistakes}. В следующий раз получится ещё лучше.`}</p>
+        <button class="btn btn-primary" data-action="new-match">Новый набор →</button>
+      </div>`;
+    return;
+  }
+  const cls = (id, kind) => {
+    const sel = kind === 'word' ? m.selWord === id : m.selMeaning === id;
+    return [m.solved.has(id) ? 'solved' : '', sel ? (m.wrong ? 'wrong' : 'selected') : ''].join(' ');
+  };
+  area.innerHTML = `${exHead('02','Соедини пары','Нажми на слово слева и его перевод справа.',`${m.solved.size} / ${total} пар`)}
+    <div class="match-grid">
+      <div class="match-col">${m.words.map(w => `<button class="match-btn cn ${cls(w.cn,'word')}" lang="zh" data-match-word="${esc(w.cn)}" ${m.solved.has(w.cn)?'disabled':''}>${w.cn}</button>`).join('')}</div>
+      <div class="match-col">${m.meanings.map(w => `<button class="match-btn ${cls(w.cn,'meaning')}" data-match-meaning="${esc(w.cn)}" ${m.solved.has(w.cn)?'disabled':''}>${w.ru}</button>`).join('')}</div>
+    </div>
+    <div class="feedback ${m.wrong?'is-bad':''}" aria-live="polite">${m.feedback}</div>
+    <div class="ex-foot"><div class="pills"><span class="pill">Осталось пар: ${total - m.solved.size}</span><span class="pill">Ошибок: ${m.mistakes}</span></div><button class="btn btn-soft" data-action="new-match">Новый набор ↻</button></div>`;
+}
+function pickMatch(kind, id){
+  const m = matchState; if(!m || m.locked) return;
+  if(kind === 'word') m.selWord = m.selWord === id ? null : id;
+  else m.selMeaning = m.selMeaning === id ? null : id;
+  if(m.selWord && m.selMeaning){
+    if(m.selWord === m.selMeaning){
+      m.solved.add(m.selWord); m.selWord = m.selMeaning = null;
+      m.feedback = m.solved.size === m.words.length ? 'Все пары найдены. Отличная работа!' : 'Верно! Пара найдена.';
+    } else {
+      m.wrong = true; m.locked = true; m.mistakes++;
+      m.feedback = 'Пока не совпало. Попробуй ещё раз.';
+      renderExercise();
+      setTimeout(() => {
+        if(matchState !== m) return;
+        m.wrong = false; m.locked = false; m.selWord = m.selMeaning = null;
+        if(currentExercise === 'match') renderExercise();
+      }, 700);
+      return;
+    }
+  }
+  renderExercise();
+}
+
+/* --- 03 Type --- */
+function newType(){
+  const word = pickDifferent(allWords, lastType); lastType = word;
+  typeState = {word, checked:false, correct:false, revealed:false, hint:false, value:''};
+}
+function renderType(area){
+  if(!typeState) newType();
+  const t = typeState, w = t.word;
+  area.innerHTML = `${exHead('03','Вспомни слово','Введи китайские иероглифы по русскому переводу.',`Верно: ${typeScore.right} / ${typeScore.done}`)}
+    <div class="q-card tone-${w.tone}">
+      <div class="q-label">Как сказать по-китайски?</div>
+      <div class="q-ru">${w.ru}</div>
+      ${t.hint && !t.revealed ? `<div class="q-py" style="margin-top:10px">${w.py}</div>` : ''}
+    </div>
+    <input class="type-input ${t.checked?(t.correct?'ok':'bad'):''}" id="typeInput" type="text" lang="zh" placeholder="输入汉字…" autocomplete="off" autocapitalize="off" spellcheck="false" value="${esc(t.value)}" ${t.checked?'disabled':''} />
+    <div class="input-hint">Вводи только иероглифы, без пиньиня. Enter — проверить.</div>
+    <div class="feedback ${t.checked?(t.correct?'is-ok':'is-bad'):''}" id="typeFeedback" aria-live="polite">${t.checked ? (t.correct ? 'Верно! 很好！' : `Правильный ответ: <b lang="zh">${w.cn}</b>`) : (t.revealed ? '' : 'После ввода нажми «Проверить».')}</div>
+    ${t.revealed || t.checked ? `<div class="details" style="display:flex;align-items:center;justify-content:space-between;gap:10px"><span><span lang="zh" style="font-size:22px;color:var(--ink)">${w.cn}</span> · <span class="py">${w.py}</span> · ${w.ru}</span>${speakBtn(w.cn)}</div>` : ''}
+    <div class="ex-foot">
+      <div class="btn-row">
+        <button class="btn btn-soft" data-action="type-hint" ${t.hint||t.revealed||t.checked?'disabled':''}>Подсказка: пиньинь</button>
+        <button class="btn btn-soft" data-action="type-reveal" ${t.revealed||t.checked?'disabled':''}>Показать ответ</button>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" data-action="type-check" ${t.checked?'disabled':''}>Проверить</button>
+        <button class="btn btn-primary" data-action="next-type" ${t.checked||t.revealed?'':'disabled'}>Дальше →</button>
+      </div>
+    </div>`;
+}
+function saveTypeValue(){ const inp = $('#typeInput'); if(inp && typeState) typeState.value = inp.value; }
+function checkType(){
+  const inp = $('#typeInput'); if(!inp || typeState.checked) return;
+  const value = inp.value.trim().replace(/[\s，。,.!！?？、]/g,'');
+  if(!value){ const fb = $('#typeFeedback'); fb.textContent = 'Сначала введи ответ.'; fb.className = 'feedback is-bad'; inp.focus(); return; }
+  typeState.value = inp.value; typeState.checked = true; typeState.correct = value === typeState.word.cn;
+  typeScore.done++; if(typeState.correct) typeScore.right++;
+  renderExercise();
+}
+
+/* --- 04 Fill --- */
+function newFill(){
+  const q = pickDifferent(fillQuestions, lastFill); lastFill = q;
+  fillState = {q, opts:shuffle(q.opts), answered:false, selected:null, showDetails:false};
+}
+function renderFill(area){
+  if(!fillState) newFill();
+  const f = fillState, q = f.q, ok = f.selected === q.a;
+  const sentence = esc(q.s).replace('___', `<span class="blank ${f.answered?'filled':''}">${f.answered ? q.a : '　　'}</span>`);
+  area.innerHTML = `${exHead('04','Заполни пропуск','Выбери слово, которое лучше всего подходит по смыслу.',`Верно: ${fillScore.right} / ${fillScore.done}`)}
+    <div class="q-card tone-pink">
+      <div class="q-label">Заверши предложение</div>
+      <div class="fill-sentence" lang="zh">${sentence}</div>
+    </div>
+    <div class="answers">${f.opts.map((o,i) => {
+      let cls = '';
+      if(f.answered){ if(o === q.a) cls = 'correct'; else if(o === f.selected) cls = 'wrong'; else cls = 'dim'; }
+      return `<button class="answer ${cls}" data-fill="${esc(o)}" ${f.answered?'disabled':''}><span class="key">${i+1}</span><span lang="zh">${o}</span></button>`;
+    }).join('')}</div>
+    <div class="feedback ${f.answered?(ok?'is-ok':'is-bad'):''}" aria-live="polite">${f.answered ? (ok ? 'Верно! ' + esc(q.why) : `Правильный ответ: <b lang="zh">${q.a}</b>. ${esc(q.why)}`) : 'Выбери один вариант.'}</div>
+    ${f.showDetails ? `<div class="details" style="display:flex;align-items:center;justify-content:space-between;gap:12px"><span><span class="py">${esc(q.py.replace('___', q.a ? '…' : '___'))}</span><br>${esc(q.ru)}</span>${speakBtn(q.s.replace('___', q.a))}</div>` : ''}
+    <div class="ex-foot">
+      <button class="btn btn-soft" data-action="fill-details" ${f.answered?'':'disabled'}>${f.showDetails?'Скрыть перевод':'Пиньинь и перевод'}</button>
+      <button class="btn btn-primary" data-action="next-fill" ${f.answered?'':'disabled'}>Следующее →</button>
+    </div>`;
+}
+function answerFill(opt){
+  if(!fillState || fillState.answered || !opt) return;
+  fillState.answered = true; fillState.selected = opt;
+  fillScore.done++; if(opt === fillState.q.a) fillScore.right++;
+  renderExercise();
+}
+
+/* --- Exercise area delegation --- */
+const area = $('#exerciseArea');
+area.addEventListener('click', e => {
+  const t = e.target.closest('button');
+  if(!t || t.disabled || t.dataset.speak) return;
+  if(t.dataset.choice !== undefined) return answerChoice(Number(t.dataset.choice));
+  if(t.dataset.matchWord) return pickMatch('word', t.dataset.matchWord);
+  if(t.dataset.matchMeaning) return pickMatch('meaning', t.dataset.matchMeaning);
+  if(t.dataset.fill) return answerFill(t.dataset.fill);
+  switch(t.dataset.action){
+    case 'next-choice': choiceState = null; renderExercise(); break;
+    case 'new-match': matchState = null; renderExercise(); break;
+    case 'type-hint': saveTypeValue(); typeState.hint = true; renderExercise(); $('#typeInput')?.focus(); break;
+    case 'type-reveal': saveTypeValue(); typeState.revealed = true; renderExercise(); break;
+    case 'type-check': checkType(); break;
+    case 'next-type': typeState = null; renderExercise(); $('#typeInput')?.focus(); break;
+    case 'fill-details': fillState.showDetails = !fillState.showDetails; renderExercise(); break;
+    case 'next-fill': fillState = null; renderExercise(); break;
+  }
+});
+area.addEventListener('keydown', e => {
+  if(e.target.id === 'typeInput' && e.key === 'Enter' && !e.isComposing){ e.preventDefault(); checkType(); }
+});
+document.addEventListener('keydown', e => {
+  if(activePanel !== 'practice' || e.metaKey || e.ctrlKey || e.altKey) return;
+  if(e.target.matches('input, textarea, select')) return;
+  const n = Number(e.key);
+  if(e.key === 'Enter' && e.target.closest('button')) return;
+  if(currentExercise === 'choice' && choiceState){
+    if(n >= 1 && n <= 4 && !choiceState.answered) answerChoice(n - 1);
+    else if(e.key === 'Enter' && choiceState.answered){ choiceState = null; renderExercise(); }
+  }
+  if(currentExercise === 'fill' && fillState){
+    if(n >= 1 && n <= 4 && !fillState.answered) answerFill(fillState.opts[n - 1]);
+    else if(e.key === 'Enter' && fillState.answered){ fillState = null; renderExercise(); }
+  }
+});
+
+/* ===================== CONTEXT ===================== */
+function renderTimeline(){
+  $('#contextTimeline').innerHTML = contextSteps.map((s,i) => `
+    <li class="tl-item">
+      <div class="tl-time">${s.time}</div>
+      <div class="tl-dot" aria-hidden="true"></div>
+      <article class="tl-card">
+        <div class="tl-step">Шаг ${pad(i+1)}</div>
+        <div class="tl-cn" lang="zh">${s.cn}</div>
+        <div class="tl-detail" id="contextDetail${i}" hidden><span class="py">${s.py}</span><br>${s.ru}</div>
+        <div class="tl-actions">
+          <button class="link-btn" data-context="${i}" aria-expanded="false" aria-controls="contextDetail${i}">Показать пиньинь и перевод</button>
+          ${speakBtn(s.cn)}
+        </div>
+      </article>
+    </li>`).join('');
+}
+function setContextDetail(i, show){
+  const d = $('#contextDetail' + i), b = $(`[data-context="${i}"]`);
+  d.hidden = !show; b.setAttribute('aria-expanded', show);
+  b.textContent = show ? 'Скрыть подсказку' : 'Показать пиньинь и перевод';
+}
+$('#contextTimeline').addEventListener('click', e => {
+  const b = e.target.closest('[data-context]'); if(!b) return;
+  const i = b.dataset.context; setContextDetail(i, $('#contextDetail' + i).hidden);
+  syncToggleAll();
+});
+function syncToggleAll(){
+  const allOpen = contextSteps.every((_,i) => !$('#contextDetail' + i).hidden);
+  $('#toggleAllContext').textContent = allOpen ? 'Скрыть все подсказки' : 'Раскрыть все подсказки';
+}
+$('#toggleAllContext').addEventListener('click', () => {
+  const allOpen = contextSteps.every((_,i) => !$('#contextDetail' + i).hidden);
+  contextSteps.forEach((_,i) => setContextDetail(i, !allOpen));
+  syncToggleAll();
+});
+
+const correctSequence = contextSteps.map((s,i) => ({id:i+1, cn:s.cn, ru:s.label}));
+function renderSequence(movedIndex = -1){
+  const list = $('#sequenceList');
+  list.classList.remove('is-correct');
+  list.innerHTML = sequenceItems.map((s,i) => `
+    <li class="seq-item ${i===movedIndex?'moved':''}">
+      <span class="seq-no">${i+1}</span>
+      <span class="seq-text"><b>${s.ru}</b><span lang="zh">${s.cn}</span></span>
+      <button class="move-btn" data-move="up" data-index="${i}" aria-label="Переместить вверх" ${i===0?'disabled':''}>${ICON_UP}</button>
+      <button class="move-btn" data-move="down" data-index="${i}" aria-label="Переместить вниз" ${i===sequenceItems.length-1?'disabled':''}>${ICON_DOWN}</button>
+    </li>`).join('');
+}
+$('#sequenceList').addEventListener('click', e => {
+  const btn = e.target.closest('[data-move]'); if(!btn || btn.disabled) return;
+  const i = Number(btn.dataset.index), j = btn.dataset.move === 'up' ? i - 1 : i + 1;
+  [sequenceItems[i], sequenceItems[j]] = [sequenceItems[j], sequenceItems[i]];
+  $('#sequenceResult').textContent = '';
+  renderSequence(j);
+  const target = $(`#sequenceList [data-move="${btn.dataset.move}"][data-index="${j}"]`);
+  (target && !target.disabled ? target : $(`#sequenceList [data-index="${j}"]:not(:disabled)`))?.focus();
+});
+function shuffleSequence(){
+  do { sequenceItems = shuffle(correctSequence); }
+  while(sequenceItems.every((s,i) => s.id === correctSequence[i].id));
+  renderSequence();
+  $('#sequenceResult').textContent = '';
+}
+$('#checkSequence').addEventListener('click', () => {
+  const correct = sequenceItems.every((s,i) => s.id === correctSequence[i].id);
+  const wrongCount = sequenceItems.filter((s,i) => s.id !== correctSequence[i].id).length;
+  const r = $('#sequenceResult');
+  r.textContent = correct
+    ? '太好了！ Ты правильно восстановила последовательность утренних дел.'
+    : `Пока не совсем: не на своём месте ${wrongCount} из ${sequenceItems.length}. Подумай, что обычно происходит сразу после пробуждения.`;
+  r.style.color = correct ? 'var(--ok)' : 'var(--bad)';
+  $('#sequenceList').classList.toggle('is-correct', correct);
+});
+$('#shuffleSequence').addEventListener('click', shuffleSequence);
+
+/* ===================== INIT ===================== */
+buildFilter();
+updateViewBtn();
+renderCategories();
+updateProgress();
+renderPhraseAndGreeting();
+renderTimeline();
+shuffleSequence();
+if(canSpeak) speechSynthesis.getVoices();
+goTo((location.hash || '').slice(1) || 'overview', {scroll:false});
+if(totalWords !== 63) console.warn(`Ожидалось 63 слова, сейчас в словаре ${totalWords}.`);
+</script>
+</body>
+</html>
